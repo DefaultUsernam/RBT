@@ -1,4 +1,5 @@
- public class Trunk
+/*
+public class Trunk
    {
     Trunk prev;
     String str;
@@ -9,3 +10,4 @@
         this.str = str;
     }
    };
+   */

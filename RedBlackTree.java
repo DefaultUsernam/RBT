@@ -1,13 +1,20 @@
+// Ulises Cantor
+// 2/5/2026
+// Menchukov
+// Computer Programming 3
+// Period 5
+// My code should check to see if it is a valid RBT
+
 //The following is one possible RedBlackTree implementation.
 //Much of this code is from Sven Woltmann's public GitHub repository. Thank you Mr. Woltmann for making your code available for educational purposes.
-
-public class RedBlackTree{
+/*
+public class RedBlackTree {
 
   static final boolean RED = false;
   static final boolean BLACK = true;
   private Node root;
   private NilNode terminator = new NilNode();
-  
+
   public Node search(int key) {
     Node node = root;
     while (node != null) {
@@ -23,8 +30,8 @@ public class RedBlackTree{
     return null;
   }
 
-  // -- Insertion ----------------------------------------------------------------------------------
-
+  // -- Insertion
+  // ----------------------------------------------------------------------------------
 
   public void insert(int key) {
     Node node = root;
@@ -90,7 +97,8 @@ public class RedBlackTree{
 
     // Parent is left child of grandparent
     else if (parent == grandparent.left) {
-      // Case 4a: Uncle is black and node is left->right "inner child" of its grandparent
+      // Case 4a: Uncle is black and node is left->right "inner child" of its
+      // grandparent
       if (node == parent.right) {
         rotateLeft(parent);
 
@@ -99,7 +107,8 @@ public class RedBlackTree{
         parent = node;
       }
 
-      // Case 5a: Uncle is black and node is left->left "outer child" of its grandparent
+      // Case 5a: Uncle is black and node is left->left "outer child" of its
+      // grandparent
       rotateRight(grandparent);
 
       // Recolor original parent and grandparent
@@ -109,7 +118,8 @@ public class RedBlackTree{
 
     // Parent is right child of grandparent
     else {
-      // Case 4b: Uncle is black and node is right->left "inner child" of its grandparent
+      // Case 4b: Uncle is black and node is right->left "inner child" of its
+      // grandparent
       if (node == parent.left) {
         rotateRight(parent);
 
@@ -118,7 +128,8 @@ public class RedBlackTree{
         parent = node;
       }
 
-      // Case 5b: Uncle is black and node is right->right "outer child" of its grandparent
+      // Case 5b: Uncle is black and node is right->right "outer child" of its
+      // grandparent
       rotateLeft(grandparent);
 
       // Recolor original parent and grandparent
@@ -138,7 +149,8 @@ public class RedBlackTree{
     }
   }
 
-  // -- Deletion -----------------------------------------------------------------------------------
+  // -- Deletion
+  // -----------------------------------------------------------------------------------
 
   public void delete(int key) {
     Node node = root;
@@ -160,7 +172,8 @@ public class RedBlackTree{
 
     // At this point, "node" is the node to be deleted
 
-    // In this variable, we'll store the node at which we're going to start to fix the R-B
+    // In this variable, we'll store the node at which we're going to start to fix
+    // the R-B
     // properties after deleting a node.
     Node movedUpNode;
     boolean deletedNodeColor;
@@ -209,7 +222,8 @@ public class RedBlackTree{
 
     // Node has no children -->
     // * node is red --> just remove it
-    // * node is black --> replace it by a temporary NIL node (needed to fix the R-B rules)
+    // * node is black --> replace it by a temporary NIL node (needed to fix the R-B
+    // rules)
     else {
       Node newChild = node.color == BLACK ? new NilNode() : null;
       replaceParentsChild(node.parent, node, newChild);
@@ -329,7 +343,8 @@ public class RedBlackTree{
     }
   }
 
-  // -- Helpers for insertion and deletion ---------------------------------------------------------
+  // -- Helpers for insertion and deletion
+  // ---------------------------------------------------------
 
   private void rotateRight(Node node) {
     Node parent = node.parent;
@@ -377,85 +392,174 @@ public class RedBlackTree{
     }
   }
 
-  
-  
-  
-   //------- printing
-  public static void showTrunks(Trunk p)
-  {
-      if (p == null) {
-          return;
-      }
+  // ------- printing
+  public static void showTrunks(Trunk p) {
+    if (p == null) {
+      return;
+    }
 
-      showTrunks(p.prev);
-      System.out.print(p.str);
+    showTrunks(p.prev);
+    System.out.print(p.str);
   }
 
-  public void printTree(){
-      printTree(root, null, false);
+  public void printTree() {
+    printTree(root, null, false);
   }
 
-  private void printTree(Node root, Trunk prev, boolean isLeft)
-  {
-      if (root == null) {
-    	  System.out.println(" " + "NIL "+"B");
-          return;
-      }
+  private void printTree(Node root, Trunk prev, boolean isLeft) {
+    if (root == null) {
+      System.out.println(" " + "NIL " + "B");
+      return;
+    }
 
-      String prev_str = "    ";
-      Trunk trunk = new Trunk(prev, prev_str);
+    String prev_str = "    ";
+    Trunk trunk = new Trunk(prev, prev_str);
 
-      printTree(root.right, trunk, true);
+    printTree(root.right, trunk, true);
 
-      if (prev == null) {
-          trunk.str = "---";
-      }
-      else if (isLeft) {
-          trunk.str = ".---";
-          prev_str = "   |";
-      }
-      else {
-          trunk.str = "`---";
-          prev.str = prev_str;
-      }
+    if (prev == null) {
+      trunk.str = "---";
+    } else if (isLeft) {
+      trunk.str = ".---";
+      prev_str = "   |";
+    } else {
+      trunk.str = "`---";
+      prev.str = prev_str;
+    }
 
-      showTrunks(trunk);
-      System.out.println(" " + root.key+(root.color==BLACK ? "B" : "R"));
+    showTrunks(trunk);
+    System.out.println(" " + root.key + (root.color == BLACK ? "B" : "R"));
 
-      if (prev != null) {
-          prev.str = prev_str;
-      }
-      trunk.str = "   |";
+    if (prev != null) {
+      prev.str = prev_str;
+    }
+    trunk.str = "   |";
 
-      printTree(root.left, trunk, false);
+    printTree(root.left, trunk, false);
   }
-  
-  
-  
-  //---- Your part:
+
+  // ---- Your part:'
+  // REALLY JUST 2, 4, AND 5
   // This should check for the rules that ensure the tree is a Red Black Tree.
-  // 1 Every node is either red or black. (This is a given since Nodes have a red/black property)
-  // 2 The root is black. 
-  // 3 Every leaf (nil) is black. (This is a definition so there's nothing to check)
+  // 1 Every node is either red or black. (This is a given since Nodes have a
+  // red/black property)
+  // 2 The root is black.
+  // 3 Every leaf (nil) is black. (This is a definition so there's nothing to
+  // check)
   // 4 If a node is red, then both its children are black.
-  // 5 For each node, all paths from the node to descendant leaves contain the same number of black nodes.
-  // To receive full credit you must explicitly check for each property! You may not assume anything based on the above implementation (which does ensure all these rules are followed)
+  // 5 For each node, all paths from the node to descendant leaves contain the
+  // same number of black nodes.
+  // To receive full credit you must explicitly check for each property! You may
+  // not assume anything based on the above implementation (which does ensure all
+  // these rules are followed)
   // you may wish to add some helper functions here.
   public boolean isRedBlack() {
-	  return false;
+    // adding all nodes to the array all[]
+    if (root.color == BLACK) {
+      Node[] all = new Node[999999];
+      int front = 0;
+      int back = 0;
+
+      all[back++] = root;
+      while (front < back) {
+        int rowSize = back - front;
+
+        for (int i = 0; i < rowSize; i++) {
+          Node curr = all[front++];
+          if (curr.left != null) {
+            all[back++] = curr.left;
+          }
+          if (curr.right != null) {
+            all[back++] = curr.right;
+          }
+        }
+      }
+      for (int i = 0; i < all.length; i++) {
+        if (all[i].color == RED) {
+          if (all[i].right.color == BLACK && all[i].left.color == BLACK) {
+            for (int j = 0; j < all.length; j++) {
+              if (height(all[i].left) != height(all[i].right)) {
+                return false;
+              }
+            }
+            for (int j = 0; j < all.length; j++) {
+              if ((blackCount(all[j].left) != blackCount(all[j].right))) {
+                return false;
+              }
+            }
+          } else {
+            return false;
+          }
+
+        } else {
+          return false;
+        }
+      }
+    }
+    return true;
   }
-  
-  
-  //This should return a string of comma separated keys that represents the shortest height path through the tree.
-  //Perhaps this would be easier to do with some helper functions?
+
+  public int blackCount(Node start) {
+    if (start == null) {
+      return 1; // assume null leaves are black
+    }
+    if (start.color == BLACK) {
+      return 1 + Math.max(blackCount(start.right), blackCount(start.left));
+    } else {
+      return 0 + Math.max(blackCount(start.right), blackCount(start.left));
+    }
+  }
+
+  public int height(Node node) {
+    if (node == null) {
+      return -1;
+    } else {
+      return 1 + Math.max(height(node.right), height(node.left));
+    }
+  }
+
+  // This should return a string of comma separated keys that represents the
+  // shortest height path through the tree.
+  // Perhaps this would be easier to do with some helper functions?
+
+  // Created a helper function so that I can input the root automatically, all
+  // other cases can just use the overloaded version of the method
   public String shortestTruePath() {
-	  return "";
+    // DO THIS BY UTILIZING SIMILAR LOGIC TO HEIGHT
+    return shortestTruePath(root);
   }
-  
-  //This returns the absolute value of the difference between the real height of the tree and its black height. 
-  public int trueHeightDiff(){
-	  return 0;
+
+  // recursively adds the keys of the nodes of the longest height path of the tree
+  public String shortestTruePath(Node n) {
+
+    if (n == null) {
+      return "";
+    }
+
+    if (node.left == null && node.right == null) {
+      return n.key;
+    }
+
+    if (node.left == null) {
+      return node.key + " , " + shortestTruePath(node.right);
+    }
+
+    if (node.right == null) {
+      return node.key + " , " + shortestTruePath(node.left);
+    }
+
+    if (height(node.left) <= height(node.right)) {
+      return node.key + " , " + shortestTruePath(node.left);
+    } else {
+      return node.key + " , " + shortestTruePath(node.right);
+    }
+
+  }
+
+  // This returns the absolute value of the difference between the real height of
+  // the tree and its black height.
+  public int trueHeightDiff() {
+    return abs(blackCount(root) - height(root));
   }
 }
-
-
+*/

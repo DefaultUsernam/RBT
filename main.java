@@ -1,4 +1,4 @@
-
+/*
 public class main {
 
 	public static void main(String[] args) {
@@ -6,3 +6,4 @@ public class main {
 		//your test code here
 	}
 }
+*/
